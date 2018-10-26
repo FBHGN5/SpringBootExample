@@ -6,12 +6,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.test.entity.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserDaoTest {
-    private Logger logger= LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserDao userDao;
 
@@ -28,6 +33,14 @@ public class UserDaoTest {
 
     @Test
     public void findTest() {
-     System.out.println(userDao.findTest("admin"));
+        System.out.println(userDao.findTest("admin"));
+    }
+
+    @Test
+    public void findByNameNot() {
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(2, 5, sort);
+        Page<User> pages = userDao.findAllByOrderByIdDesc(pageable);
+        System.out.println(pages.hasNext());
     }
 }

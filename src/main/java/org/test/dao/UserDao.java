@@ -1,5 +1,7 @@
 package org.test.dao;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.test.entity.User;
@@ -14,4 +16,6 @@ public interface UserDao extends JpaRepository<User,Integer> {
             "and ur.roleId=r.id " +
             "and u.username=?1")
     List<String> findTest(String username);
+    //实现分页功能
+    Page<User> findAllByOrderByIdDesc(Pageable pageable);
 }
