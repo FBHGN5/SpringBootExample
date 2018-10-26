@@ -34,10 +34,10 @@ public class TestController {
      * @return
      */
     @GetMapping("/page")
-    public String page(@RequestParam(value = "page", defaultValue = "0",required = true) Integer page,Model model) {
+    public String page(@RequestParam(value = "page", defaultValue = "1",required = true) Integer page,Model model) {
        System.out.println("当前页："+page);
        //分页关键代码,将查询的结果集转为page<T>对象类型 Pageable设置当前页，每页大小，还有设置查询结果的顺序
-        Pageable pageable = new PageRequest(page, 5);
+        Pageable pageable = new PageRequest(page-1, 5);
         Page<User> p = userDao.findAll(pageable);
         int arr[]=new int[p.getTotalPages()];
         for(int i=0;i<arr.length;i++){
