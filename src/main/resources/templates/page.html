@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+    <title>Title</title>
+    <style>
+
+        .test{
+            position: relative;
+            height: 20px;
+        }
+        .test ul{
+            position: absolute;
+            left: 50%;
+            top: -30%;
+            transform:translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">
+                <a href="/">我的书签</a>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <table class="table  table-hover" style="word-break:break-all; word-wrap:break-all;" id="table">
+                <thead>
+                <tr>
+                    <th>主键id</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>生日</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user:${page.content}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.password}"></td>
+                    <td th:text="${#dates.format(user.birth,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td>删除</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页实现-->
+            <th:block th:if='${page.totalPages>1}'>
+                <p>每页<span th:text="${page.size}"></span>条  <span th:text="${page.number+1}"></span>/
+                    <span th:text="${page.totalPages}"></span>页
+                </p>
+                <div class="test">
+                    <ul class="pagination">
+                        <th:block th:if="${page.isFirst()}==true"><li><a>首页</a></li></th:block>
+                        <th:block th:if="${page.isFirst()}==false">
+                            <li><a href="/page?page=1">首页</a></li></th:block>
+                        <th:block th:if="${page.hasPrevious()}==true">
+                            <li><a th:href=" '/page?page='+${page.number}">&laquo;</a></li></th:block>
+                        <th:block th:if="${page.hasPrevious()}==false">
+                            <li><a>&laquo;</a></li></th:block>
+
+                       <li th:each="arr:${arr}">
+                           <th:block th:if="${page.number==arr-1}">
+                               <a style="background-color: #337ab7;color:#fff" th:text="${arr}"></a>
+                           </th:block>
+                           <th:block th:if="${page.number!=arr-1}">
+                               <a th:href="'/page?page='+${arr}" th:text="${arr}"></a>
+                           </th:block>
+                       </li>
+                        <th:block th:if="${page.hasNext()}==true">
+                            <li><a th:href=" '/page?page=' + ${page.number+2}">&raquo;</a></li></th:block>
+                        <th:block th:if="${page.hasNext()}==false">
+                            <li><a>&raquo;</a></li></th:block>
+                        <th:block th:if="${page.isLast()}==true">
+                            <li><a>末页</a></li></th:block>
+                        <th:block th:if="${page.isLast()}==false">
+                            <li><a th:href="'/page?page='+${page.totalPages}">末页</a></li></th:block>
+                    </ul>
+                </div>
+            </th:block>
+        </div>
+
+
+
+
+    </div>
+</div>
+</body>
+</html>
