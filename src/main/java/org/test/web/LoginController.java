@@ -32,6 +32,7 @@ public class LoginController {
 
     @PostMapping("/subLogin")
     public String login(User user, HttpSession session, Model model) {
+        System.out.println(user);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),
                 user.getPassword());
@@ -42,12 +43,14 @@ public class LoginController {
             user = userDao.findByUsername(user.getUsername()).get(0);
             System.out.println("user{}="+user);
             session.setAttribute("user", user);
+            if (subject.hasRole("admin")) {
+                model.addAttribute("ad", "有admin权限");
+            }
         } catch (AuthenticationException e) {
+            System.out.println(e.getMessage());
             model.addAttribute("ad", "用户名或密码错误!");
         }
-        if (subject.hasRole("admin")) {
-            model.addAttribute("ad", "有admin权限");
-        }
+
 
         return "success";
     }

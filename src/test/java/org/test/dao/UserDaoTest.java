@@ -27,8 +27,13 @@ public class UserDaoTest {
     }
 
     @Test
+//    @Transactional
+//    @Rollback(false)
     public void findByUsername() {
-        System.out.println(userDao.findByUsername("admin"));
+      User u=userDao.findById(2).get();
+      u.setPassword("342bdd486c5c46c3bc0d14d17c228def");
+      userDao.save(u);
+        System.out.println(userDao.findByUsername("jack"));
     }
 
     @Test

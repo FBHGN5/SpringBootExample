@@ -91,13 +91,14 @@ public class CustomRealm extends AuthorizingRealm {
     private String getPasswordByUsername(String username) {
         List<User> user = userDao.findByUsername(username);
         if (user.size() > 0) {
+            System.out.println("授权下的"+user.get(0));
             return user.get(0).getPassword();
         }
         return null;
     }
 
     public static void main(String[] args) {
-        Md5Hash md5Hash = new Md5Hash("123", "张三" + slat, 1);
+        Md5Hash md5Hash = new Md5Hash("123", "Mike" + slat, 1);
         System.out.println(md5Hash);
     }
 }
