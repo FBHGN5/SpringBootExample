@@ -1,8 +1,13 @@
 package org.test.interceptor;
 
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.test.dao.UserDao;
+import org.test.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,16 +15,33 @@ import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private UserDao userDao;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        //首先进入的方法
-        System.out.println("preHandle");
-        System.out.println(request.getServletPath());
+//首先进入的方法
         HttpSession session = request.getSession();
+        User user= (User) session.getAttribute("user");
         String url=request.getRequestURI();
-        System.out.println("请求的url:"+url);
-      return true;
+
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.getPrincipal()==null){
+            return true;
+        }
+        String username=subject.getPrincipal().toString();
+
+        //刷新session rememberMe账户直接登录
+        if(user==null&&username!=null){
+            user=userDao.findByUsername(username).get(0);
+           // session.setAttribute("user",user);
+            System.out.println("刷新session成功！");
+        }
+
+        System.out.println("username="+username);
+        System.out.println("user="+user);
+        System.out.println("url{}="+url);
+        return true;
+
 
     }
     //返回modelAndView之前执行

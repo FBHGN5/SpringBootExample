@@ -126,7 +126,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", status='" + status + '\'' +
                 ", regtime=" + regtime +
-                ", rememberMe=" + rememberMe +
                 '}';
     }
 }

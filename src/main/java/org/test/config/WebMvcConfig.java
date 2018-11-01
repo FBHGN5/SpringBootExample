@@ -1,5 +1,6 @@
 package org.test.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -11,8 +12,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     /**
      * 注册拦截器
      */
+    @Bean
+    LoginInterceptor loginInterceptor(){
+        return new LoginInterceptor();
+    }
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry){
-       interceptorRegistry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/index","/static/**");
+       interceptorRegistry.addInterceptor(loginInterceptor()).addPathPatterns("/**").excludePathPatterns("/index","/static/**");
     }
 }

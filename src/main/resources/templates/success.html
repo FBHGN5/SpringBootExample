@@ -1,0 +1,26 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆成功</title>
+    <script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js">
+    </script>
+</head>
+<body>
+<div th:text="${ad}"></div>
+<th:block th:if="${session.user}!=null">
+<div id="name" th:text="${session.user.username}"></div>
+</th:block>
+<div><a href="/logout">退出</a></div>
+</body>
+<script>
+    // $(function () {
+    //     $.get("check",{},function (result) {
+    //         console.log(result);
+    //      //   $("#name").html(result.username);
+    //     })
+    // })
+</script>
+</html>
