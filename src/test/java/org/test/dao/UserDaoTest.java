@@ -23,22 +23,20 @@ public class UserDaoTest {
     @Test
     public void findAll() {
         logger.warn("错误信息");
-        System.out.println(userDao.findAll().get(0).getUserRole().get(0).getRole());
+        System.out.println(userDao.findAll().get(0));
     }
 
     @Test
 //    @Transactional
 //    @Rollback(false)
     public void findByUsername() {
-      User u=userDao.findById(2).get();
-      u.setPassword("342bdd486c5c46c3bc0d14d17c228def");
-      userDao.save(u);
-        System.out.println(userDao.findByUsername("jack"));
+
+        //System.out.println(userDao.f);
     }
 
     @Test
     public void findTest() {
-        System.out.println(userDao.findTest("admin"));
+        System.out.println(userDao.findTest("Lili"));
     }
 
     @Test

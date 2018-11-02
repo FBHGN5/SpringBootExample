@@ -98,7 +98,7 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     public static void main(String[] args) {
-        Md5Hash md5Hash = new Md5Hash("123", "Mike" + slat, 1);
+        Md5Hash md5Hash = new Md5Hash("123456", "李四" + slat, 1);
         System.out.println(md5Hash);
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.test.dao.*;
-import org.test.entity.RolePermission;
 import org.test.entity.User;
 
 import javax.servlet.http.HttpSession;
@@ -28,10 +27,15 @@ public class LoginController {
     private PermissionDao permissionDao;
     @Autowired
     private RolePermissionDao rolePermissionDao;
+    @GetMapping("/403")
+
+    public String s(){
+        return "403";
+    }
     @GetMapping("/check")
     @ResponseBody
-    public RolePermission check(HttpSession session){
-        RolePermission u=rolePermissionDao.findById(1).get();
+    public User check(HttpSession session){
+        User u= (User) session.getAttribute("user");
         System.out.println("------------"+u);
         return u;
     }
@@ -85,7 +89,7 @@ public class LoginController {
     @RequiresRoles(value = {"admin", "manager", "user"}, logical = Logical.OR)
     @RequestMapping(value = "/testRole", method = RequestMethod.GET)
     @ResponseBody
-    public String testRole(HttpSession session) {
+    public String testRole() {
         return "test role success";
     }
 }
