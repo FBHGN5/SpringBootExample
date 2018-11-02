@@ -24,6 +24,6 @@ public class RoleDaoTest {
 //      while(it.hasNext()){
 //          System.out.println(it.next());
 //      }
-        System.out.println(role.get(0).getPermission());
+        System.out.println(roleDao.findById(1).get());
     }
 }

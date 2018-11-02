@@ -14,6 +14,6 @@ public class RolePermissionDaoTest {
 
     @Test
     public void p() {
-        System.out.println(permissionDao.findAll());
+        System.out.println(permissionDao.findById(1).get());
     }
 }

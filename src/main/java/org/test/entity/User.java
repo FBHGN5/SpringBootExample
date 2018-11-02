@@ -1,5 +1,7 @@
 package org.test.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -46,6 +48,12 @@ public class User {
         return userRole;
     }
 
+
+    /**
+     *  如此递归反复，造成该问题。
+     *  加上 @JsonBackReference
+     */
+    @JsonBackReference
     public void setUserRole(List<UserRole> userRole) {
         this.userRole = userRole;
     }

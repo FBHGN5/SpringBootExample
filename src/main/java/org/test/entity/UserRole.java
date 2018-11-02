@@ -3,12 +3,11 @@ package org.test.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="user_role")
 public class UserRole {
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name="user_id", insertable = false, updatable = false)
     // insertable = false, updatable = false解决多对1生成字段冲突
     private Integer userId;
@@ -68,6 +67,14 @@ public class UserRole {
         this.id = id;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", roleId=" + roleId +
+                ", user=" + user +
+                ", role=" + role +
+                '}';
+    }
 }

@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.test.dao.UserDao;
+import org.test.dao.*;
+import org.test.entity.RolePermission;
 import org.test.entity.User;
 
 import javax.servlet.http.HttpSession;
@@ -19,11 +20,25 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserRoleDao userRoleDao;
+    @Autowired
+    private RoleDao roleDao;
+    @Autowired
+    private PermissionDao permissionDao;
+    @Autowired
+    private RolePermissionDao rolePermissionDao;
     @GetMapping("/check")
     @ResponseBody
-    public User check(HttpSession session){
-       User user= (User) session.getAttribute("user1");
-       return user;
+    public RolePermission check(HttpSession session){
+        RolePermission u=rolePermissionDao.findById(1).get();
+        System.out.println("------------"+u);
+        return u;
+    }
+    @GetMapping("/check1")
+    @ResponseBody
+    public int check(){
+        return 151230;
     }
     @GetMapping("/login")
     public String login() {

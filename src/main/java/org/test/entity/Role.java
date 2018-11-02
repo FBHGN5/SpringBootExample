@@ -1,5 +1,7 @@
 package org.test.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -26,6 +28,14 @@ public class Role {
     @OneToMany(mappedBy="role",fetch=FetchType.EAGER)
     private List<UserRole> userRole;
 
+    public List<UserRole> getUserRole() {
+        return userRole;
+    }
+    @JsonBackReference
+    public void setUserRole(List<UserRole> userRole) {
+        this.userRole = userRole;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -40,5 +50,13 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                '}';
     }
 }

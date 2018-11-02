@@ -13,6 +13,6 @@ public class PermissionDaoTest {
      private PermissionDao permissionDao;
     @Test
     public void findByUsername() {
-        permissionDao.findPermissionByUsername("admin");
+        permissionDao.findById(1).get();
     }
 }
