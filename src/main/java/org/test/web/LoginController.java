@@ -45,7 +45,8 @@ public class LoginController {
         return 151230;
     }
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpSession session) {
+
         return "login";
     }
 
@@ -74,17 +75,17 @@ public class LoginController {
         return "success";
     }
 
-    @GetMapping("/logout")
-    public String lo(HttpSession session) {
-        Subject subject = SecurityUtils.getSubject();
-        if (subject.isAuthenticated()) {
-            subject.logout();
-//            if (LOG.isDebugEnabled()) {
-//                LOG.debug("用户" + username + "退出登录");
-//            }
-        }
-        return "login";
-    }
+//    @GetMapping("/logout")
+//    public String lo(HttpSession session) {
+//        Subject subject = SecurityUtils.getSubject();
+//        if (subject.isAuthenticated()) {
+//            subject.logout();
+////            if (LOG.isDebugEnabled()) {
+////                LOG.debug("用户" + username + "退出登录");
+////            }
+//        }
+//        return "login";
+//    }
 
     @RequiresRoles(value = {"admin", "manager", "user"}, logical = Logical.OR)
     @RequestMapping(value = "/testRole", method = RequestMethod.GET)

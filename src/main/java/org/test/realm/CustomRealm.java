@@ -26,8 +26,8 @@ public class CustomRealm extends AuthorizingRealm {
     private static final String slat = "124123daklfqe213nogilq2eng@!#$!@!#$!qlnfmlqk112";
     @Autowired
     private UserDao userDao;
-   @Autowired
-   private PermissionDao permissionDao;
+    @Autowired
+    private PermissionDao permissionDao;
 
 
     /**
@@ -58,7 +58,7 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     private Set<String> getRolesByUserName(String username) {
-        List<String> list= userDao.findTest(username);
+        List<String> list = userDao.findTest(username);
         Set<String> sets = new HashSet<String>(list);
         return sets;
     }
@@ -91,12 +91,12 @@ public class CustomRealm extends AuthorizingRealm {
     private String getPasswordByUsername(String username) {
         List<User> user = userDao.findByUsername(username);
         if (user.size() > 0) {
-            System.out.println("授权下的"+user.get(0));
+            System.out.println("授权下的" + user.get(0));
             return user.get(0).getPassword();
         }
         return null;
     }
-
+    
     public static void main(String[] args) {
         Md5Hash md5Hash = new Md5Hash("123456", "李四" + slat, 1);
         System.out.println(md5Hash);

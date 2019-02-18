@@ -17,10 +17,7 @@ public class TestController {
     @Autowired
     private UserDao userDao;
 
-    @GetMapping("/index")
-    public String index() {
-        return "index";
-    }
+
 
     @GetMapping("/test")
     public String index1() {
