@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.test.dao.UserDao;
 import org.test.entity.User;
 
@@ -16,9 +17,6 @@ import org.test.entity.User;
 public class TestController {
     @Autowired
     private UserDao userDao;
-
-
-
     @GetMapping("/test")
     public String index1() {
         return "cms/test";
@@ -43,5 +41,12 @@ public class TestController {
         model.addAttribute("page",p);
         model.addAttribute("arr",arr);
         return "page";
+    }
+    @GetMapping("/user")
+    @ResponseBody
+    public User u(){
+        User u=new User();
+        u.setUsername("中午！");
+        return u;
     }
 }

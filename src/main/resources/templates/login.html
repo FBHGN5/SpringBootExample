@@ -6,11 +6,18 @@
 </head>
 <body>
 
-<form action="/subLogin" method="post">
+<form action="/subLogin" method="get">
     用户名：<input type="text" name="username"><br>
     密 码：<input type="password" name="password"><br>
     记住我：<input type="checkbox" name="rememberMe"><br>
     <input type="submit" value="登录">
 </form>
 </body>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $.get("user",{},function (result) {
+        console.log(result);
+    })
+</script>
 </html>

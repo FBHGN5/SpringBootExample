@@ -11,6 +11,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.test.dao.PermissionDao;
 import org.test.dao.UserDao;
 import org.test.entity.User;
@@ -22,6 +23,7 @@ import java.util.Set;
 /**
  * 提供给shiro和数据库进行交互的一个中间层
  */
+@Component
 public class CustomRealm extends AuthorizingRealm {
     private static final String slat = "124123daklfqe213nogilq2eng@!#$!@!#$!qlnfmlqk112";
     @Autowired

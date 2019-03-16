@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.test.interceptor.LoginInterceptor;
 
 @Configuration
+
 public class WebMvcConfig implements WebMvcConfigurer {
 
     /**
@@ -18,6 +19,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry){
-       interceptorRegistry.addInterceptor(loginInterceptor()).addPathPatterns("/**").excludePathPatterns("/index","/static/**");
+
+    // interceptorRegistry.addInterceptor(loginInterceptor()).addPathPatterns("/**").excludePathPatterns("/index","/static/**");
     }
+
+
+
 }
