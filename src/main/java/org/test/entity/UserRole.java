@@ -34,7 +34,7 @@ public class UserRole {
      * 多对一
      */
     @ManyToOne()
-   // @JoinColumn(name="user_id")//可以自动生成
+    @JoinColumn(name="user_id")//可以自动生成
     private User user;
 
     /**

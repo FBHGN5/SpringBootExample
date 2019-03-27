@@ -79,7 +79,7 @@ public class LoginController {
         return "success";
     }
 
-//   已经在过滤器配置这段代码可以省略！！
+//   已经在过滤器配置这段代码可以省略！！退出登录
 //    @GetMapping("/logout")
 //    public String lo(HttpSession session) {
 //        Subject subject = SecurityUtils.getSubject();

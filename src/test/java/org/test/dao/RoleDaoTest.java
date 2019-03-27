@@ -18,12 +18,13 @@ public class RoleDaoTest {
 
     @Test
     @Transactional
+    //多对多测试必须加
     public void r() {
         List<Role> role = roleDao.findAll();
 //      Iterator it=role.iterator();
 //      while(it.hasNext()){
 //          System.out.println(it.next());
 //      }
-        System.out.println(roleDao.findById(1).get());
+        System.out.println(roleDao.findById(1).get().getPermission());
     }
 }

@@ -1,7 +1,6 @@
 package org.test.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,8 +34,8 @@ public class FileController {
             String fileName = file[i].getOriginalFilename();
 
             // 文件上产的路径
-            //    String filePath = "d:/upload/";
-            String filePath= ClassUtils.getDefaultClassLoader().getResource("").getPath();
+           String filePath = "C:/upload/";
+          //  String filePath= ClassUtils.getDefaultClassLoader().getResource("").getPath();
             System.out.println("文件上传的路径--"+filePath);
             // fileName处理
             fileName = filePath+ UUID.randomUUID()+fileName;

@@ -51,6 +51,7 @@ public class User {
 
     /**
      *  如此递归反复，造成该问题。
+     *  多对1，一对多必须加，不加导致使用@Responsbody会抛出异常
      *  加上 @JsonBackReference
      */
     @JsonBackReference

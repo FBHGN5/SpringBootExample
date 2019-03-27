@@ -1,8 +1,10 @@
 package org.test.util;
 
+import java.util.Scanner;
+
 public class SalaryTest {
-    public void test() {
-        double money = 7500; //税前工资
+    public void test(int a) {
+        double money = a; //税前工资
 
         double society = getOther(money); //应扣社保
 
@@ -88,7 +90,10 @@ public class SalaryTest {
     }
 
     public static void main(String[] args) {
+        System.out.println("请输入工资");
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
         SalaryTest salaryTest = new SalaryTest();
-        salaryTest.test();
+        salaryTest.test(a);
     }
 }
