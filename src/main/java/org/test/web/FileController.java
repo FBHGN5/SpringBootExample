@@ -33,8 +33,8 @@ public class FileController {
             // 获取文件名
             String fileName = file[i].getOriginalFilename();
 
-            // 文件上产的路径
-           String filePath = "C:/upload/";
+            // 文件上传的路径
+            String filePath = "C:/upload/";
           //  String filePath= ClassUtils.getDefaultClassLoader().getResource("").getPath();
             System.out.println("文件上传的路径--"+filePath);
             // fileName处理

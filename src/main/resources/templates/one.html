@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn").click(function () {
+                $.ajax({
+                    url: "/oneTomany",
+                    type: "get",
+                    data: {},
+                    success: function (result) {
+                   console.log(result);
+                    }, error: function () {
+
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+<form action="">
+    <input type="button" id="btn" value="一对多">
+</form>
+</body>
+
+</html>

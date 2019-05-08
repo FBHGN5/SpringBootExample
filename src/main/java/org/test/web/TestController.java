@@ -1,5 +1,8 @@
 package org.test.web;
 
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,5 +51,35 @@ public class TestController {
         User u=new User();
         u.setUsername("中午！");
         return u;
+    }
+    @GetMapping("/test2")
+    public String test(){
+        return "one";
+    }
+    /**
+     * 一对多
+     * 解决@OneToMany注解序列化json格式栈溢出
+     */
+    @GetMapping("/oneTomany")
+    @ResponseBody
+    public JSONObject test2(){
+        User user=userDao.findById(1).get();
+        //将list集合分解，将user的成员变量单独一个个的传入
+        JSONObject jsonobject = new JSONObject();
+        //传入user属性
+        jsonobject.put("username",user.getUsername());
+        jsonobject.put("email",user.getEmail());
+        JSONArray jsonArray = new JSONArray();
+        for(int i=0;i<user.getUserRole().size();i++){
+            JSONObject jo= new JSONObject();
+            //传入userRole属性
+            jo.put("id",user.getUserRole().get(i).getId());
+            jo.put("userId",user.getUserRole().get(i).getUserId());
+            //生成json数组
+            jsonArray.add(i,jo);
+        }
+        //将json数组传入json对象
+        jsonobject.element("userRole",jsonArray);
+        return jsonobject;
     }
 }
