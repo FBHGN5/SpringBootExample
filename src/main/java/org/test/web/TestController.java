@@ -13,13 +13,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.test.dao.UserDao;
+import org.test.dao.UserRoleDao;
 import org.test.entity.User;
+import org.test.entity.UserRole;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 
 public class TestController {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserRoleDao userRoleDao;
     @GetMapping("/test")
     public String index1() {
         return "cms/test";
@@ -66,7 +73,8 @@ public class TestController {
         User user=userDao.findById(1).get();
         //将list集合分解，将user的成员变量单独一个个的传入
         JSONObject jsonobject = new JSONObject();
-        //传入user属性
+        //传入user属性,一个个写
+        //JSONObject jsonobject = JSONObject.fromObject(user);这种写法也会序列化list集合@Jsonback注解不起作用
         jsonobject.put("username",user.getUsername());
         jsonobject.put("email",user.getEmail());
         JSONArray jsonArray = new JSONArray();
@@ -81,5 +89,31 @@ public class TestController {
         //将json数组传入json对象
         jsonobject.element("userRole",jsonArray);
         return jsonobject;
+    }
+    /**
+     * 最简单写法
+     * 一对多
+     * 解决@OneToMany注解使用Map
+     */
+    @GetMapping("/oneTomany2")
+    @ResponseBody
+    public Map<String,Object> test3(){
+        User user=userDao.findById(1).get();
+        //将list集合分解，将user的成员变量单独一个个的传入
+        Map<String,Object> map=new HashMap<>();
+        map.put("user",user);
+        map.put("userRole",user.getUserRole());
+        //User不会返回一对多的List，需要手动添加
+        return map;
+    }
+    /**
+     * 最简单写法
+     * 多对一不会报错
+     */
+    @GetMapping("/oneTomany3")
+    @ResponseBody
+    public UserRole test4(){
+
+        return userRoleDao.findById(198).get();
     }
 }

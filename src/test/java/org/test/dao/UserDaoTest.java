@@ -31,7 +31,7 @@ public class UserDaoTest {
 //    @Rollback(false)
     public void findByUsername() {
 
-        System.out.println(userDao.findById(1).get().getUserRole().get(0).getRole());
+       // System.out.println(userDao.findById(1).get().getUserRole().get(0).getRole());
     }
 
     @Test
